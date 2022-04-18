@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 class UsersController extends Controller
 {
     function users(){
-        $users=User::all();
+        $users=User::paginate(3);
         $is_admin=0;
         if(Auth::user()->role==1){
             $is_admin=1;

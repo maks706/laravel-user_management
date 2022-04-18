@@ -136,6 +136,7 @@
                     </div>
                 </div>
                 @endforeach 
+                {{$users->links()}}
             </div>
         </main>
      
