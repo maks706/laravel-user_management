@@ -38,7 +38,7 @@
             </h1>
 
         </div>
-        <form action="" method="post">
+        <form action="/users/security/update/{{$user->id}}" method="post">
             @csrf
             @if(session('error'))
                 {{session('error')}}

@@ -50,7 +50,7 @@
                 </ul>
             </div>
         @endif
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="/users/create" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-xl-6">

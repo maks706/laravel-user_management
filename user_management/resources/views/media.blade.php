@@ -40,7 +40,7 @@
             </h1>
 
         </div>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="/users/avatar/update/{{$user->id}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-xl-6">

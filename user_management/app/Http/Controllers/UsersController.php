@@ -5,116 +5,118 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
+
     function users(){
-        $users=User::paginate(3);
-        $is_admin=0;
-        if(Auth::user()->role==1){
-            $is_admin=1;
-        }
-        return view('users',['users'=>$users,'is_admin'=>$is_admin]);
-    }
-    function edit($id,Request $request){
-        $user=User::find($id);
-        if ($request->isMethod('post')){
-            User::where('id',$id)->update(['username'=>$request->input('username'),
-                                            'tel'=>$request->tel,
-                                            'title'=>$request->title,
-                                            'address'=>$request->address
-                                        ]);
-            return view('edit',['user'=>$user]);
-        }
-        return view('edit',['user'=>$user]);
-
-    }
-    function media($id,Request $request){
-        $user=User::find($id);
-        if ($request->isMethod('post')){
-            $image=$request->file("avatar");
-            $filename=$image->store('/uploads');
-            
-            $user->avatar=$filename;
-            $user->save();
-            $request->session()->flash('success', 'image edited!');
-            return redirect("/users");
-        }return view('media',['image'=>$user->avatar]);
-    }
-    function createuser(Request $request){
-
-        if ($request->isMethod('post')){
-            
-            $image=$request->file("avatar");
-            
-            $filename=$image->store('/uploads');
-            $this->validate($request,[
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:6',
-                'avatar'=>'required'
-            ]);
-            //dd($filename);
-            User::create(['username'=>$request->username,
-                            'tel'=>$request->tel,
-                            'title'=>$request->title,
-                            'address'=>$request->address,
-                            'email'=>$request->email,
-                            'password'=>Hash::make($request->password),
-                            'status'=>$request->status,
-                            'avatar'=>'/'.$filename,
-                            'vkhref'=>$request->vkhref,
-                            'telegramhref'=>$request->telegramhref,
-                            'instahref'=>$request->instahref
-                            
-                            ]    
-                        );
-            $request->session()->flash('success', 'User created');
-            return redirect('/users');
-        }
         
-        return view('createuser');
-    }
-
-    function security($id,Request $request){
-        if ($request->isMethod('post')){
-
-            $this->validate($request,[
-                'email' => ['required', 'email', Rule::unique('users')->ignore(User::find($id))],
-                'newPassword' => 'required|string|min:6',
-                'newPassword2' => 'required|string|min:6',
-                
-            ]);
-            if($request->newPassword==$request->newPassword2){
-                User::where('id',$id)->update([
-                    'email'=>$request->email,
-                    'password'=>Hash::make($request->newPassword),
-                ]);
-                $request->session()->flash('success', 'email password updated!');
-                return redirect('/users');
-            }
-            $request->session()->flash('error', 'password is not equal');
-            return redirect('/security/'.$id);
+        $users = User::paginate(3);
         
-        }return view('security',['user'=>User::find($id)]);
-
+        return view('users',['users' => $users]);
     }
 
-    function status($id,Request $request){
-        if($request->isMethod('post')){
-            User::where('id',$id)->update([
-               'status'=>$request->status
+    function editInfo($id,Request $request){
+        
+        $user = User::findOrFail($id);
+        
+        return view('edit',['user' => $user]);
+
+    }
+    
+    function updateInfo($id,Request $request){
+        
+        User::find($id)
+                ->updateInfo(
+                    ['username' => $request->username,
+                    'tel' => $request->tel,
+                    'title' => $request->title,
+                    'address' => $request->address
+                    ]
+                );
+        return redirect('/users');
+            
+    }
+
+    function editAvatar($id){
+        
+        $user = User::findOrFail($id);
+        
+        return view('media',['user'=>$user]);
+    
+    }
+
+    function updateAvatar($id,Request $request){
+        
+        User::find($id)->uploadAvatar($request);
+        
+        return redirect("/users");
+    
+    }
+
+    function editUser(){
+    
+        return view('create');
+    
+    }
+
+    function createUser(Request $request){
+    
+        User::newUser($request);
+        
+        return redirect('/users');
+    
+    }
+
+    function editSecurity($id){
+    
+        $user = User::findOrFail($id);
+    
+        return view('security',['user'=>$user]);
+    
+    }
+
+    function updateSecurity($id,Request $request){
+        User::find($id)
+            ->confirmData($request)
+            ->update(
+                ['email'=>$request->email,
+                'password'=>Hash::make($request->newPassword)
+                ]
+            );
+        return redirect('/users');
+
+            
+     
+    }
+    function editStatus($id){
+        
+        return view('status',['status'=>User::findOrFail($id)->status]); 
+    
+    }
+    
+    function updateStatus($id,Request $request){
+        
+        User::find($id)
+            ->update([
+                'status'=>$request->status
             ]);
-            $request->session()->flash('success', 'Task was successful!');
-            return redirect('/users');
-        }return view('status',['status'=>User::find($id)->status]);
+        
+        $request->session()->flash('success', 'Task was successful!');
+        
+        return redirect('/users');
+    
     }
 
-    function delete($id,Request $request){
-        User::where('id',$id)->delete();
+    function deleteUser($id,Request $request){
+        
+        User::find($id)->delete();
+        
         $request->session()->flash('success', 'User deleted!');
+        
         return redirect('/users');
 
     }

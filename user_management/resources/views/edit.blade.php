@@ -43,7 +43,7 @@
             </h1>
 
         </div>
-        <form action="" method="post">
+        <form action="/users/update/{{$user->id}}" method="post">
             @csrf
             <div class="row">
                 <div class="col-xl-6">

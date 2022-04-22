@@ -19,23 +19,24 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users','UsersController@users')->middleware('auth');
-Route::get('/edit/{id}','UsersController@edit')->middleware('auth','checkRole');
-Route::post('/edit/{id}','UsersController@edit')->middleware('auth','ckeckRole');
 
-Route::get('/media/{id}','UsersController@media')->middleware('auth','checkRole');
-Route::post('/media/{id}','UsersController@media')->middleware('auth','checkRole');
+Route::get('/users/edit/{id}','UsersController@editInfo')->middleware('auth','checkRole');
+Route::post('/users/update/{id}','UsersController@updateInfo')->middleware('auth','checkRole');
 
-Route::get('/security/{id}','UsersController@security')->middleware('auth','checkRole');
-Route::post('/security/{id}','UsersController@security')->middleware('auth','checkRole');
+Route::get('/users/avatar/edit/{id}','UsersController@editAvatar')->middleware('auth','checkRole');
+Route::post('/users/avatar/update/{id}','UsersController@updateAvatar')->middleware('auth','checkRole');
 
-Route::get('/status/{id}','UsersController@status')->middleware('auth','checkRole');
-Route::post('/status/{id}','UsersController@status')->middleware('auth','checkRole');
+Route::get('/users/security/edit/{id}','UsersController@editSecurity')->middleware('auth','checkRole');
+Route::post('/users/security/update/{id}','UsersController@updateSecurity')->middleware('auth','checkRole');
+
+Route::get('/users/status/edit/{id}','UsersController@editStatus')->middleware('auth','checkRole');
+Route::post('/users/status/update/{id}','UsersController@updateStatus')->middleware('auth','checkRole');
 
 
-Route::get('/delete/{id}','UsersController@delete')->middleware('auth','checkRole');
+Route::get('/users/delete/{id}','UsersController@deleteUser')->middleware('auth','checkRole');
 
-Route::get('/createuser','UsersController@createuser')->middleware('auth','admin');
-Route::post('/createuser','UsersController@createuser')->middleware('auth','admin');
+Route::get('/users/create/edit','UsersController@editUser')->middleware('auth','admin');
+Route::post('/users/create','UsersController@createUser')->middleware('auth','admin');
 
 
 
