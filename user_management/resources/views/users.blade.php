@@ -15,21 +15,20 @@
 </head>
     <body class="mod-bg-1 mod-nav-link">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-primary-gradient">
-            <a class="navbar-brand d-flex align-items-center fw-500" href="users.html"><img alt="logo" class="d-inline-block align-top mr-2" src="img/logo.png"> Учебный проект</a> <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Басты <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Войти</a>
+                        <a class="nav-link" href="/login">Кіру</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Выйти</a>
+                                                     document.getElementById('logout-form').submit();">Шығу</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                         </form>
@@ -42,13 +41,13 @@
            
             <div class="subheader">
                 <h1 class="subheader-title">
-                    <i class='subheader-icon fal fa-users'></i> Список пользователей
+                    <i class='subheader-icon fal fa-users'></i> Қолданушылар тізімі
                 </h1>
             </div>
             <div class="row">
                 <div class="col-xl-12">
                     @if($is_admin)
-                    <a class="btn btn-success" href="/createuser">Добавить</a>
+                    <a class="btn btn-success" href="/createuser">Қосу</a>
                     @endif
                     @if(session('success'))
                     {{session('success')}}
@@ -57,7 +56,7 @@
                     {{session('error')}}
                     @endif
                     <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
-                        <input type="text" id="js-filter-contacts" name="filter-contacts" class="form-control shadow-inset-2 form-control-lg" placeholder="Найти пользователя">
+                        <input type="text" id="js-filter-contacts" name="filter-contacts" class="form-control shadow-inset-2 form-control-lg" placeholder="Қолданушыны табу">
                         <div class="btn-group btn-group-lg btn-group-toggle hidden-lg-down ml-3" data-toggle="buttons">
                             <label class="btn btn-default active">
                                 <input type="radio" name="contactview" id="grid" checked="" value="grid"><i class="fas fa-table"></i>
@@ -88,20 +87,20 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="/edit/{{$user['id']}}">
                                             <i class="fa fa-edit"></i>
-                                        Редактировать</a>
+                                        Өңдеу</a>
                                         <a class="dropdown-item" href="/security/{{$user['id']}}">
                                             <i class="fa fa-lock"></i>
-                                        Безопасность</a>
+                                        Қауіпсіздік</a>
                                         <a class="dropdown-item" href="/status/{{$user['id']}}">
                                             <i class="fa fa-sun"></i>
-                                        Установить статус</a>
+                                        Статус орнату</a>
                                         <a class="dropdown-item" href="/media/{{$user['id']}}">
                                             <i class="fa fa-camera"></i>
-                                            Загрузить аватар
+                                            Аватар жүктеу
                                         </a>
                                         <a href="/delete/{{$user['id']}}" class="dropdown-item" onclick="return confirm('are you sure?');">
                                             <i class="fa fa-window-close"></i>
-                                            Удалить
+                                            Өшіру
                                         </a>
                                     </div>
                                     <span class="text-truncate text-truncate-xl">{{$user['speciality']}}</span>
@@ -142,9 +141,7 @@
      
         <!-- BEGIN Page Footer -->
         <footer class="page-footer" role="contentinfo">
-            <div class="d-flex align-items-center flex-1 text-muted">
-                <span class="hidden-md-down fw-700">2020 © Учебный проект</span>
-            </div>
+            
             <div>
                 <ul class="list-table m-0">
                     <li><a href="intel_introduction.html" class="text-secondary fw-700">Home</a></li>
