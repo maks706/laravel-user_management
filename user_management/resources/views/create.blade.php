@@ -15,19 +15,18 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-primary-gradient">
-        <a class="navbar-brand d-flex align-items-center fw-500" href="users.html"><img alt="logo" class="d-inline-block align-top mr-2" src="img/logo.png"> Учебный проект</a> <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Басты <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Войти</a>
+                    <a class="nav-link" href="/login">Кіру</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Выйти</a>
+                    <a class="nav-link" href="/logout">Шығу</a>
                 </li>
             </ul>
         </div>
@@ -35,7 +34,7 @@
     <main id="js-page-content" role="main" class="page-content mt-3">
         <div class="subheader">
             <h1 class="subheader-title">
-                <i class='subheader-icon fal fa-plus-circle'></i> Добавить пользователя
+                <i class='subheader-icon fal fa-plus-circle'></i> Қолданушы қосу
             </h1>
         
 
@@ -57,30 +56,30 @@
                     <div id="panel-1" class="panel">
                         <div class="panel-container">
                             <div class="panel-hdr">
-                                <h2>Общая информация</h2>
+                                <h2>Жалпы ақпарат</h2>
                             </div>
                             <div class="panel-content">
                                 <!-- username -->
                                 <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Имя</label>
+                                    <label class="form-label" for="simpleinput">Есімі</label>
                                     <input type="text" id="simpleinput" name="username" class="form-control">
                                 </div>
 
                                 <!-- title -->
                                 <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Место работы</label>
+                                    <label class="form-label" for="simpleinput">Жұмысы</label>
                                     <input type="text" id="simpleinput" name="title" class="form-control">
                                 </div>
 
                                 <!-- tel -->
                                 <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Номер телефона</label>
+                                    <label class="form-label" for="simpleinput">Телефон нөмірі</label>
                                     <input type="text" id="simpleinput" class="form-control" name="tel">
                                 </div>
 
                                 <!-- address -->
                                 <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Адрес</label>
+                                    <label class="form-label" for="simpleinput">Мекенөжайы</label>
                                     <input type="text" id="simpleinput" class="form-control" name="address">
                                 </div>
                             </div>
@@ -92,7 +91,7 @@
                     <div id="panel-1" class="panel">
                         <div class="panel-container">
                             <div class="panel-hdr">
-                                <h2>Безопасность и Медиа</h2>
+                                <h2>Қауіпсіздік және медиа</h2>
                             </div>
                             <div class="panel-content">
                                 <!-- email -->
@@ -103,23 +102,23 @@
 
                                 <!-- password -->
                                 <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Пароль</label>
+                                    <label class="form-label" for="simpleinput">Құпия сөз</label>
                                     <input type="password" id="simpleinput" class="form-control" name="password">
                                 </div>
 
                                 
                                 <!-- status -->
                                 <div class="form-group">
-                                    <label class="form-label" for="example-select">Выберите статус</label>
+                                    <label class="form-label" for="example-select">Статус таңдаңыз</label>
                                     <select class="form-control" id="example-select" name="status">
                                         <option value="Online">Онлайн</option>
-                                        <option value="Otoshel">Отошел</option>
-                                        <option value="Ne bespokoit">Не беспокоить</option>
+                                        <option value="Departed">Кетті</option>
+                                        <option value="Do not disturb">Мазалама</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-label" for="example-fileinput">Загрузить аватар</label>
+                                    <label class="form-label" for="example-fileinput">Аватар жүктеу</label>
                                     <input type="file" id="example-fileinput" class="form-control-file" name="avatar">
                                 </div>
                             </div>
@@ -132,7 +131,7 @@
                     <div id="panel-1" class="panel">
                         <div class="panel-container">
                             <div class="panel-hdr">
-                                <h2>Социальные сети</h2>
+                                <h2>Әлеуметтік желілер</h2>
                             </div>
                             <div class="panel-content">
                                 <div class="row">
@@ -179,7 +178,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                        <button class="btn btn-success">Добавить</button>
+                                        <button class="btn btn-success">Қосу</button>
                                     </div>
                                 </div>
                             </div>
